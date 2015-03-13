@@ -54,4 +54,12 @@ where discount in (select discount
 	           where customers.city='Dallas' 
 	           OR customers.city='London')
 
+-- Number 8
+-- Check restraints are used to limit the values that can be accepteted by one
+-- or more columns.  THey are most useful when you want to limit the range of
+-- one column of data. The advantage is to check the value being entered into a 
+-- record.  If it returns false, the record violates the check constraint and will not be
+-- inserted into the table.  An example of this would be a check to see if there
+-- are any null values in a given data set.  
+
 
