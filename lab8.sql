@@ -1,3 +1,6 @@
+-- SCOTT DIBISCEGLIO
+-- LAB 8 SQL NORMALIZATION TWO
+
 DROP TABLE IF EXISTS items;
 DROP TABLE IF EXISTS customers;
 DROP TABLE IF EXISTS orders;
@@ -6,7 +9,7 @@ DROP TABLE IF EXISTS supppliers;
 
 -- ITEMS
 CREATE TABLE items (
-SKU 		char(4) not null,
+SKU 		  int not null,
 itemID 		text, 
 priceUSD	numeric(10,2),
 quant 		integer,
@@ -96,6 +99,10 @@ INSERT INTO orders ( ordno, mon, cid, sid, SKU, quantity, priceUSD, comments)
 
 INSERT INTO orders ( ordno, mon, cid, sid, SKU, quantity, priceUSD, comments)
 	VALUES ('3710', 'feb', '0004', '1338', '1113', 45, 1500.00, 'half paid');
+	
+INSERT INTO orders ( ordno, mon, cid, sid, SKU, quantity, priceUSD, comments)
+	VALUES ('3711', 'feb', '0003', '1338', '1337', 30, 750.00, 'Awaiting Delievery');
+
 
 
 SELECT *
@@ -114,3 +121,16 @@ FROM customers
 SELECT itemID, quantity
 FROM orders, items
 WHERE quantity > 0
+
+-- Functional Dependecies
+-- ITEMS
+-- SKU -> itemID, priceUSD, Quant
+
+-- Orders
+-- Ordno -> Sid, SKU, quant, priceUSD, mon, comments (ordno is the primary key)
+
+-- Suppliers
+-- sid -> name, address, city, state, zipcode, contact, paymentinfo
+
+-- Customers
+-- cid -> address, address, city, state, contact
